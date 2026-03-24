@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mohamad Jibran — PR & Copywriter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Nunito:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;1,6..12,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --cream:#F7F4EF;
+  --cream-dark:#EDE8DF;
+  --ink:#1C1A17;
+  --ink-soft:#4A4640;
+  --ink-muted:#9A9590;
+  --gold:#B8955A;
+  --gold-soft:#EDE0C8;
+  --white:#FFFFFF;
+  --rule:rgba(28,26,23,0.1);
+  --dark:#17150F;
+  --font-display:'Lora',Georgia,serif;
+  --font-body:'Nunito',system-ui,sans-serif;
+  --nav-w:72px;
+  --bar-h:44px;
+  --ease:cubic-bezier(0.76,0,0.24,1);
+}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--cream);}
+body{font-family:var(--font-body);color:var(--ink);font-size:16px;line-height:1.7;font-weight:300;cursor:none;}
+
+/* CURSOR */
+#cur{position:fixed;width:8px;height:8px;background:var(--ink);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;}
+#cur-r{position:fixed;width:32px;height:32px;border:1px solid var(--ink);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.25;transition:width .25s,height .25s,opacity .25s;}
+
+/* SIDE NAV */
+#sidenav{
+  position:fixed;left:0;top:0;bottom:0;width:var(--nav-w);
+  display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+  padding:28px 0 calc(28px + var(--bar-h));
+  z-index:200;border-right:1px solid var(--rule);background:var(--cream);
+}
+.nav-logo{
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  font-family:var(--font-display);font-size:13px;font-weight:600;
+  letter-spacing:.05em;text-decoration:none;color:var(--ink);
+}
+.nav-items{display:flex;flex-direction:column;align-items:center;gap:4px;list-style:none;}
+.nav-items button{
+  background:none;border:none;cursor:none;
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  font-family:var(--font-body);font-size:9px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-muted);padding:10px 8px;
+  transition:color .2s;position:relative;
+}
+.nav-items button::after{
+  content:'';position:absolute;left:50%;top:0;bottom:0;
+  width:1.5px;background:var(--gold);
+  transform:scaleY(0) translateX(-50%);transform-origin:bottom;
+  transition:transform .4s var(--ease);
+}
+.nav-items button:hover{color:var(--ink-soft);}
+.nav-items button.on{color:var(--ink);}
+.nav-items button.on::after{transform:scaleY(1) translateX(-50%);}
+.nav-pip{width:5px;height:5px;border-radius:50%;border:1px solid var(--ink-muted);transition:all .25s;}
+.nav-pip.on{background:var(--gold);border-color:var(--gold);}
+
+/* STAGE */
+#stage{
+  position:fixed;left:var(--nav-w);top:0;right:0;
+  bottom:var(--bar-h);overflow:hidden;
+}
+
+/* PAGES */
+.pg{
+  position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;
+  opacity:0;pointer-events:none;
+  transition:opacity .55s var(--ease),transform .55s var(--ease);
+  transform:translateY(16px);
+}
+.pg.on{opacity:1;pointer-events:all;transform:none;}
+.pg.out{opacity:0;transform:translateY(-16px);}
+.pg::-webkit-scrollbar{width:3px;}
+.pg::-webkit-scrollbar-thumb{background:var(--gold);}
+
+/* BOTTOM BAR */
+#bbar{
+  position:fixed;bottom:0;left:var(--nav-w);right:0;height:var(--bar-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;border-top:1px solid var(--rule);
+  background:var(--cream);z-index:150;
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted);
+  transition:background .4s,border-color .4s;
+}
+.bbar-loc{display:flex;align-items:center;gap:7px;}
+.bbar-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);}
+.bbar-links{display:flex;gap:20px;}
+.bbar-link{text-decoration:none;color:var(--ink-muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;transition:color .2s;}
+.bbar-link:hover{color:var(--gold);}
+
+/* ANIM */
+@keyframes fu{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.pg.on .a1{animation:fu .6s var(--ease) .05s both;}
+.pg.on .a2{animation:fu .6s var(--ease) .15s both;}
+.pg.on .a3{animation:fu .6s var(--ease) .25s both;}
+.pg.on .a4{animation:fu .6s var(--ease) .35s both;}
+.pg.on .a5{animation:fu .6s var(--ease) .45s both;}
+
+/* ═══ HOME ═══ */
+#p0{background:var(--cream);}
+.h-wrap{min-height:100%;display:grid;grid-template-columns:1fr 1fr;}
+.h-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 52px 80px 44px;border-right:1px solid var(--rule);
+}
+.h-eyebrow{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:28px;display:flex;align-items:center;gap:10px;}
+.h-eyebrow::before{content:'';width:18px;height:1px;background:var(--gold);}
+.h-name{font-family:var(--font-display);font-size:clamp(42px,5.2vw,76px);font-weight:700;line-height:.98;letter-spacing:-.025em;margin-bottom:10px;}
+.h-name em{font-style:italic;color:var(--gold);}
+.h-tagline{font-family:var(--font-display);font-style:italic;font-size:clamp(14px,1.5vw,19px);color:var(--ink-soft);font-weight:400;margin-bottom:36px;line-height:1.5;}
+.h-desc{font-size:14px;font-weight:300;color:var(--ink-soft);max-width:380px;line-height:1.85;margin-bottom:40px;}
+.h-pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:44px;}
+.pill{font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--rule);padding:6px 15px;color:var(--ink-soft);font-weight:500;transition:all .2s;}
+.pill:hover{border-color:var(--gold);color:var(--ink);background:var(--gold-soft);}
+.h-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-f{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;background:var(--ink);color:var(--cream);border:1px solid var(--ink);padding:12px 26px;cursor:none;transition:background .2s,color .2s;text-decoration:none;display:inline-block;}
+.btn-f:hover{background:var(--gold);border-color:var(--gold);color:var(--ink);}
+.btn-o{font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;border:1px solid var(--rule);color:var(--ink-soft);padding:12px 26px;cursor:none;background:none;transition:border-color .2s,color .2s;}
+.btn-o:hover{border-color:var(--ink-soft);color:var(--ink);}
+
+.h-right{display:flex;flex-direction:column;background:var(--dark);position:relative;overflow:hidden;}
+.h-bg-text{position:absolute;bottom:-15px;left:-8px;font-family:var(--font-display);font-size:150px;font-weight:700;color:rgba(255,255,255,.022);line-height:1;pointer-events:none;white-space:nowrap;letter-spacing:-.04em;}
+.h-photo{flex:1;position:relative;min-height:300px;}
+.h-photo-inner{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;}
+.h-photo-inner img{width:100%;height:100%;object-fit:cover;display:block;}
+.ph-icon{font-size:28px;opacity:.09;color:var(--white);}
+.ph-txt{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.15);}
+.h-right-foot{padding:24px 36px;border-top:1px solid rgba(255,255,255,.07);position:relative;z-index:2;}
+.h-stat-row{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:20px;}
+.h-stat-row span{color:var(--gold);}
+.ci-label{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:8px;}
+.ci-row{display:flex;gap:8px;}
+.ci-card{flex:1;padding:10px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);transition:border-color .2s;}
+.ci-card:hover{border-color:rgba(184,149,90,.3);}
+.ci-type{font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.22);display:block;margin-bottom:3px;}
+.ci-val{font-size:11px;color:rgba(255,255,255,.5);display:block;line-height:1.35;font-weight:300;}
+
+/* ═══ ABOUT ═══ */
+#p1{background:var(--white);}
+.ab-wrap{min-height:100%;display:grid;grid-template-columns:300px 1fr;}
+.ab-side{padding:80px 36px 80px 44px;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:36px;position:sticky;top:0;height:100%;}
+.sec-lbl{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:16px;display:flex;align-items:center;gap:9px;}
+.sec-lbl::before{content:'';width:14px;height:1px;background:var(--gold);}
+.ab-sname{font-family:var(--font-display);font-size:32px;font-weight:700;line-height:.98;letter-spacing:-.02em;}
+.ab-sname em{font-style:italic;color:var(--gold);display:block;}
+.ab-srole{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted);margin-top:10px;line-height:2;}
+.ab-links{display:flex;flex-direction:column;gap:8px;}
+.ab-link{font-size:12px;text-decoration:none;color:var(--ink-soft);display:flex;align-items:center;gap:8px;transition:color .2s,gap .2s;letter-spacing:.01em;}
+.ab-link:hover{color:var(--gold);gap:13px;}
+.ab-main{padding:80px 60px 80px 52px;}
+.ab-intro{font-family:var(--font-display);font-size:clamp(20px,2.2vw,28px);font-weight:400;line-height:1.55;letter-spacing:-.01em;color:var(--ink);margin-bottom:36px;border-left:2px solid var(--gold);padding-left:22px;}
+.ab-intro em{font-style:italic;color:var(--gold);}
+.ab-body{font-size:14px;font-weight:300;color:var(--ink-soft);line-height:1.9;margin-bottom:28px;max-width:580px;}
+.ab-body strong{font-weight:700;color:var(--ink);}
+.ab-sh{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-muted);margin:36px 0 14px;padding-bottom:10px;border-bottom:1px solid var(--rule);}
+.skills-wrap{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:36px;}
+.s-chip{font-size:10px;letter-spacing:.07em;padding:6px 14px;border:1px solid var(--rule);color:var(--ink-soft);font-weight:500;transition:all .2s;}
+.s-chip:hover{border-color:var(--gold);color:var(--ink);background:var(--gold-soft);}
+.ci-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.ci-ab{padding:14px;border:1px solid var(--rule);transition:border-color .2s;}
+.ci-ab:hover{border-color:var(--gold);}
+.ci-ab-type{font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:5px;}
+.ci-ab-title{font-family:var(--font-display);font-size:13px;font-weight:600;line-height:1.3;margin-bottom:3px;}
+.ci-ab-sub{font-size:11px;color:var(--ink-muted);}
+
+/* ═══ CV ═══ */
+#p2{background:var(--cream);}
+.cv-wrap{min-height:100%;display:grid;grid-template-columns:280px 1fr;}
+.cv-left{padding:80px 32px 80px 44px;background:var(--dark);display:flex;flex-direction:column;gap:28px;position:sticky;top:0;height:100%;}
+.cv-name{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--white);line-height:1.05;letter-spacing:-.02em;}
+.cv-name em{font-style:italic;color:var(--gold);}
+.cv-sub{font-size:11px;color:rgba(255,255,255,.3);line-height:1.7;font-weight:300;}
+.cv-dl{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--dark);background:var(--gold);padding:10px 18px;transition:opacity .2s;width:fit-content;}
+.cv-dl:hover{opacity:.85;}
+.cv-sl{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid rgba(255,255,255,.07);}
+.cv-lang{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.cv-lang-n{font-size:12px;color:rgba(255,255,255,.5);font-weight:300;}
+.cv-lang-l{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);}
+.cv-bar-w{margin-bottom:9px;}
+.cv-bar-l{display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.38);margin-bottom:4px;}
+.cv-bar-t{height:2px;background:rgba(255,255,255,.08);border-radius:1px;overflow:hidden;}
+.cv-bar-f{height:100%;background:var(--gold);border-radius:1px;}
+.cv-right{padding:80px 60px 80px 52px;overflow-y:auto;}
+.cv-st{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.cv-st::after{content:'';flex:1;height:1px;background:var(--rule);}
+.tl{margin-bottom:44px;}
+.tl-i{display:grid;grid-template-columns:96px 1fr;gap:18px;padding:18px 0;border-bottom:1px solid var(--rule);}
+.tl-i:last-child{border-bottom:none;}
+.tl-yr{font-size:11px;letter-spacing:.06em;color:var(--ink-muted);padding-top:2px;}
+.tl-r{font-family:var(--font-display);font-size:16px;font-weight:600;margin-bottom:2px;}
+.tl-c{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;font-weight:600;}
+.tl-d{font-size:12px;color:var(--ink-soft);line-height:1.7;font-weight:300;}
+.edu-g{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:44px;}
+.edu-c{padding:18px;border:1px solid var(--rule);transition:border-color .2s;}
+.edu-c:hover{border-color:var(--gold);}
+.edu-d{font-family:var(--font-display);font-size:14px;font-weight:600;margin-bottom:3px;}
+.edu-s{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.edu-y{font-size:11px;color:var(--ink-muted);}
+
+/* ═══ WORK ═══ */
+#p3{background:var(--white);}
+.wk-wrap{min-height:100%;padding:80px 60px 80px 52px;}
+.wk-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;padding-bottom:20px;border-bottom:1px solid var(--rule);}
+.wk-h{font-family:var(--font-display);font-size:clamp(34px,4.2vw,60px);font-weight:700;line-height:.94;letter-spacing:-.03em;}
+.wk-h em{font-style:italic;color:var(--gold);}
+.wk-sub{font-size:12px;color:var(--ink-muted);text-align:right;line-height:1.7;}
+.wk-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.wc{position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--dark);cursor:none;}
+.wc.sp{grid-column:span 2;aspect-ratio:21/8;}
+.wc-bg{position:absolute;inset:0;transition:transform .7s var(--ease);}
+.wc:hover .wc-bg{transform:scale(1.04);}
+.c1{background:linear-gradient(135deg,#1c1a14,#2e2618);}
+.c2{background:linear-gradient(135deg,#171b18,#1e2820);}
+.c3{background:linear-gradient(135deg,#1a1517,#281820);}
+.c4{background:linear-gradient(135deg,#141318,#1c1a25);}
+.c5{background:linear-gradient(135deg,#181510,#25200f);}
+.wc-lines{position:absolute;inset:0;opacity:.025;background-image:repeating-linear-gradient(0deg,transparent,transparent 24px,rgba(255,255,255,.8) 24px,rgba(255,255,255,.8) 25px);}
+.wc-body{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 28px;background:linear-gradient(to top,rgba(14,13,10,.88) 0%,transparent 55%);}
+.wc-tag{display:inline-block;font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,149,90,.35);padding:3px 9px;margin-bottom:9px;width:fit-content;}
+.wc-title{font-family:var(--font-display);font-size:clamp(15px,1.8vw,22px);font-weight:700;color:var(--white);line-height:1.15;margin-bottom:5px;}
+.wc-s{font-size:10px;color:rgba(255,255,255,.38);letter-spacing:.04em;}
+.wc-arr{position:absolute;top:18px;right:18px;width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);font-size:12px;transition:all .25s;transform:rotate(-45deg);}
+.wc:hover .wc-arr{background:var(--gold);border-color:var(--gold);color:var(--dark);transform:rotate(0deg);}
+
+/* ═══ ARTICLES ═══ */
+#p4{background:var(--cream);}
+.ar-wrap{min-height:100%;display:grid;grid-template-columns:1fr 320px;}
+.ar-main{padding:80px 52px 80px 52px;border-right:1px solid var(--rule);}
+.ar-head{margin-bottom:40px;}
+.ar-h{font-family:var(--font-display);font-size:clamp(34px,4vw,54px);font-weight:700;line-height:.95;letter-spacing:-.03em;margin-bottom:10px;}
+.ar-h em{font-style:italic;color:var(--gold);}
+.ar-sub-txt{font-size:13px;color:var(--ink-muted);font-weight:300;}
+.arc{padding:24px 0;border-top:1px solid var(--rule);transition:padding-left .3s var(--ease);cursor:none;}
+.arc:hover{padding-left:11px;}
+.arc:first-of-type{border-top:2px solid var(--ink);}
+.arc-meta{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.arc-cat{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+.arc-date{font-size:10px;color:var(--ink-muted);}
+.arc-src{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--white);background:var(--ink-soft);padding:2px 7px;font-weight:600;}
+.arc-title{font-family:var(--font-display);font-size:clamp(16px,1.8vw,22px);font-weight:600;line-height:1.2;letter-spacing:-.01em;margin-bottom:9px;transition:color .2s;}
+.arc:hover .arc-title{color:var(--gold);}
+.arc-ex{font-size:13px;color:var(--ink-muted);line-height:1.7;margin-bottom:12px;font-weight:300;}
+.arc-rd{font-size:9px;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;color:var(--ink);font-weight:700;display:inline-flex;align-items:center;gap:6px;transition:gap .2s,color .2s;}
+.arc-rd:hover{gap:12px;color:var(--gold);}
+.ar-side{padding:80px 36px 80px 36px;display:flex;flex-direction:column;gap:32px;}
+.s-head{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:13px;padding-bottom:8px;border-bottom:1px solid var(--rule);}
+.t-cloud{display:flex;flex-wrap:wrap;gap:6px;}
+.t-pill{font-size:9px;letter-spacing:.07em;padding:6px 12px;border:1px solid var(--rule);color:var(--ink-soft);text-decoration:none;transition:all .2s;font-weight:500;}
+.t-pill:hover{border-color:var(--gold);color:var(--ink);background:var(--gold-soft);}
+.nl-box{background:var(--dark);padding:24px;}
+.nl-h{font-family:var(--font-display);font-size:18px;font-style:italic;color:var(--white);margin-bottom:6px;font-weight:600;}
+.nl-s{font-size:11px;color:rgba(255,255,255,.32);margin-bottom:14px;line-height:1.6;font-weight:300;}
+.nl-in{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--white);font-family:var(--font-body);font-size:12px;padding:9px 12px;outline:none;margin-bottom:7px;font-weight:300;}
+.nl-in::placeholder{color:rgba(255,255,255,.22);}
+.nl-in:focus{border-color:var(--gold);}
+.nl-btn{width:100%;background:var(--gold);border:none;color:var(--dark);font-family:var(--font-body);font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:10px;cursor:none;transition:opacity .2s;}
+.nl-btn:hover{opacity:.85;}
+
+/* ═══ MODEL ═══ */
+#p5{background:var(--dark);}
+.mo-wrap{min-height:100%;padding:80px 60px 80px 52px;}
+.mo-top{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:end;margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.08);}
+.mo-h{font-family:var(--font-display);font-size:clamp(34px,4.2vw,60px);font-weight:700;line-height:.94;letter-spacing:-.03em;color:var(--white);}
+.mo-h em{font-style:italic;color:var(--gold);}
+.mo-ey{font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.mo-desc{font-size:13px;color:rgba(255,255,255,.35);line-height:1.8;font-weight:300;}
+.clients{display:flex;border:1px solid rgba(255,255,255,.07);margin-bottom:32px;overflow:hidden;}
+.cl-item{flex:1;padding:14px 20px;border-right:1px solid rgba(255,255,255,.07);display:flex;flex-direction:column;align-items:center;gap:3px;transition:background .2s;}
+.cl-item:last-child{border-right:none;}
+.cl-item:hover{background:rgba(255,255,255,.03);}
+.cl-name{font-family:var(--font-display);font-size:14px;font-weight:600;color:rgba(255,255,255,.6);font-style:italic;}
+.cl-type{font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.22);}
+.mo-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto;gap:3px;}
+.mi{position:relative;overflow:hidden;cursor:none;}
+.mi:nth-child(1){grid-row:span 2;}
+.mi:nth-child(4){grid-column:span 2;}
+.mi-img{width:100%;background:#1e1c14;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:transform .6s var(--ease);}
+.mi:nth-child(1) .mi-img{aspect-ratio:2/3.2;}
+.mi:nth-child(2) .mi-img,.mi:nth-child(3) .mi-img,.mi:nth-child(5) .mi-img{aspect-ratio:3/4;}
+.mi:nth-child(4) .mi-img{aspect-ratio:2/1;}
+.mi:hover .mi-img{transform:scale(1.04);}
+.mi-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.mi-ph{font-size:20px;opacity:.07;color:var(--white);}
+.mi-ph-t{font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.1);}
+.mi-ov{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding:18px;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 50%);opacity:0;transition:opacity .3s;}
+.mi:hover .mi-ov{opacity:1;}
+.mi-t{font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--white);font-style:italic;margin-bottom:2px;}
+.mi-l{font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);}
+.mo-cta{margin-top:24px;display:flex;align-items:center;gap:18px;}
+.btn-gl{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.13);padding:10px 22px;transition:all .2s;}
+.btn-gl:hover{border-color:var(--gold);color:var(--gold);}
+.mo-note{font-size:10px;color:rgba(255,255,255,.18);font-style:italic;}
+
+/* MOBILE */
+@media(max-width:768px){
+  :root{--nav-w:0px;}
+  #sidenav{bottom:auto;width:100%;height:50px;flex-direction:row;border-right:none;border-bottom:1px solid var(--rule);padding:0 16px calc(0px);}
+  .nav-logo{writing-mode:horizontal-tb;transform:none;font-size:13px;}
+  .nav-items{flex-direction:row;gap:0;}
+  .nav-items button{writing-mode:horizontal-tb;transform:none;font-size:8px;padding:5px 7px;}
+  .nav-items button::after{display:none;}
+  .nav-pip{display:none;}
+  #stage{left:0;top:50px;}
+  #bbar{left:0;}
+  .h-wrap,.ab-wrap,.cv-wrap,.ar-wrap{grid-template-columns:1fr;}
+  .h-right,.ab-side,.cv-left,.ar-side{display:none;}
+  .h-left,.ab-main,.cv-right,.ar-main,.wk-wrap,.mo-wrap{padding:36px 20px;}
+  .wk-grid{grid-template-columns:1fr;}
+  .wc.sp{grid-column:span 1;aspect-ratio:4/3;}
+  .mo-grid{grid-template-columns:1fr 1fr;}
+  .mi:nth-child(1){grid-row:span 1;}
+  .mi:nth-child(4){grid-column:span 2;}
+  .clients{flex-wrap:wrap;}
+  .cl-item{border-bottom:1px solid rgba(255,255,255,.07);}
+  .mo-top{grid-template-columns:1fr;}
+  .wk-top{flex-direction:column;align-items:flex-start;gap:6px;}
+  .edu-g{grid-template-columns:1fr;}
+  .ci-grid{grid-template-columns:1fr;}
+  #cur,#cur-r{display:none;}
+  body{cursor:auto;}
+  a,button{cursor:pointer;}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<!-- SIDE NAV -->
+<nav id="sidenav">
+  <a class="nav-logo" href="#" onclick="return false;">Jibran.</a>
+  <ul class="nav-items" id="navList">
+    <li><button onclick="goTo(0)" class="on" data-i="0">Home</button></li>
+    <li><button onclick="goTo(1)" data-i="1">About</button></li>
+    <li><button onclick="goTo(2)" data-i="2">CV</button></li>
+    <li><button onclick="goTo(3)" data-i="3">Work</button></li>
+    <li><button onclick="goTo(4)" data-i="4">Writing</button></li>
+    <li><button onclick="goTo(5)" data-i="5">Lens</button></li>
+  </ul>
+  <div class="nav-pip on" id="navPip"></div>
+</nav>
+
+<!-- STAGE -->
+<main id="stage">
+
+  <!-- HOME -->
+  <div class="pg on" id="p0">
+    <div class="h-wrap">
+      <div class="h-left">
+        <p class="h-eyebrow a1">Portfolio · Jakarta, Indonesia</p>
+        <h1 class="h-name a2">Mohamad<br><em>Jibran.</em></h1>
+        <p class="h-tagline a2">Communication Major. PR minded. Article Writer. Always present.</p>
+        <p class="h-desc a3">Communication Science Graduated, Public Relations Enthusiast &amp; Copywriter with a sharp eye for brand narrative, audience connection, and the stories worth telling. Also a commercial model because presence matters everywhere.</p>
+        <div class="h-pills a4">
+          <span class="pill">Strategic Communication</span>
+          <span class="pill">Public Relations</span>
+          <span class="pill">Copywriting</span>
+          <span class="pill">Brand Strategy</span>
+          <span class="pill">Marketing</span>
+          <span class="pill">Event Coordinator</span>
+          <span class="pill">Commercial Model</span>
+        </div>
+        <div class="h-btns a5">
+          <button class="btn-f" onclick="goTo(1)">Get to Know Me</button>
+          <button class="btn-f" onclick="goTo(2)">My Resume</button>
+          <button class="btn-f" onclick="goTo(4)">What I Published?</button>
+        </div>
+      </div>
+      <div class="h-right">
+        <div class="h-bg-text">Jibran</div>
+        <div class="h-photo">
+          <div class="h-photo-inner">
+            <!-- Replace with: <img src="your-photo.jpg" alt="Mohamad Jibran"> -->
+            <div class="ph-icon">◉</div>
+            <div class="ph-txt">Add your photo here</div>
+          </div>
+        </div>
+        <div class="h-right-foot">
+          <div class="h-stat-row">
+            <span>Open to Work</span>
+            <span><span>Public Relations · Writer · Project Planning</span></span>
+          </div>
+          <p class="ci-label">Currently Into</p>
+          <div class="ci-row">
+            <div class="ci-card">
+              <span class="ci-type">Listening</span>
+              <span class="ci-val">Blood Orange — Coastal Grooves</span>
+            </div>
+            <div class="ci-card">
+              <span class="ci-type">Watching</span>
+              <span class="ci-val">Pluribus</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="pg" id="p1">
+    <div class="ab-wrap">
+      <div class="ab-side">
+        <div>
+          <div class="sec-lbl">About</div>
+          <div class="ab-sname">Mohamad<br><em>Jibran.</em></div>
+          <p class="ab-srole">Public Relations<br>Copywriter<br>Project Planning</p>
+        </div>
+        <div class="ab-links">
+          <a href="mailto:@djibran2002@gmail.com" class="ab-link"><span>→</span> Email</a>
+          <a href="https://linkedin.com" target="_blank" class="ab-link"><span>→</span> LinkedIn</a>
+          <a href="https://instagram.com" target="_blank" class="ab-link"><span>→</span> Instagram</a>
+          <a href="https://medium.com" target="_blank" class="ab-link"><span>→</span> Medium</a>
+        </div>
+      </div>
+      <div class="ab-main">
+        <p class="ab-intro a1">I believe a brand’s most valuable asset is a trusted voice. I specialize in building that authority through strategic Public Relations and high impact copywriting that ensures a brand’s presence remains influential and enduring.</p>
+        <p class="ab-body a2">Hi, I'm <strong>Mohamad Jibran</strong> — a <strong>Public Relations Enthusiast & Copywriter</strong> based in Jakarta, Indonesia. My work exists at the vital intersection of communication strategy and creative execution: that precise moment when the right words reach the right audience and spark genuine action.</p>
+        <p class="ab-body a3">With a background spanning <strong>Marketing, Brand strategy, and High impact content,</strong> I am deeply invested in how brands navigate modern culture, cultivate trust, and articulate stories that truly resonate. Beyond the strategic realm, my experience as a commercial model sharpens my instincts for aesthetics, presence, and the nuances of visual communication.</p>
+        <p class="ab-body a3">I also dedicate time to writing about music, film, culture, and other subjects that ignite my interest. This practice fuels a constant state of curiosity a quality I believe is the most valuable asset one can bring to any creative brief or business challenge.</p>
+        <div class="ab-sh a4">Core Skills</div>
+        <div class="skills-wrap a4">
+          <span class="s-chip">Strategic Communication</span>
+          <span class="s-chip">Public Relations</span>
+          <span class="s-chip">Copywriting</span>
+          <span class="s-chip">Brand Narrative</span>
+          <span class="s-chip">Content Strategy</span>
+          <span class="s-chip">Media Relations</span>
+          <span class="s-chip">Campaign Planning</span>
+          <span class="s-chip">Social Media</span>
+          <span class="s-chip">Market Research</span>
+          <span class="s-chip">Visual Communication</span>
+          <span class="s-chip">Storytelling</span>
+        </div>
+        <div class="ab-sh a5">interest</div>
+        <div class="ci-grid a5">
+          <div class="ci-ab">
+            <div class="ci-ab-type">Music</div>
+            <div class="ci-ab-title">Neo-soul, R&amp;B, Rap</div>
+            <div class="ci-ab-sub">Blood Orange, Kendrick Lamar, Erykah Badu</div>
+          </div>
+          <div class="ci-ab">
+            <div class="ci-ab-type">Film</div>
+            <div class="ci-ab-title">Arthouse &amp; Drama</div>
+            <div class="ci-ab-sub">House of Cards, Oppenheimer, The Irishman</div>
+          </div>
+          <div class="ci-ab">
+            <div class="ci-ab-type">Game</div>
+            <div class="ci-ab-title">RPG &amp; Sport</div>
+            <div class="ci-ab-sub">Mafia, Assasin Creed, Fifa</div>
+          </div>
+          <div class="ci-ab">
+            <div class="ci-ab-type">Sport</div>
+            <div class="ci-ab-title">Inside &amp; Outside Workout</div>
+            <div class="ci-ab-sub">Gym, Basketball, Padel</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CV -->
+  <div class="pg" id="p2">
+    <div class="cv-wrap">
+      <div class="cv-left">
+        <div>
+          <div class="sec-lbl" style="color:rgba(255,255,255,.22);">Curriculum Vitae</div>
+          <div class="cv-name">Mohamad<br><em>Jibran.</em></div>
+          <p class="cv-sub">PR Enthusiast · Copywriter · Commercial Model · Jakarta, Indonesia</p>
+        </div>
+        <a href="C:\Users\Jibran\OneDrive\Documents\CV Mohamad Jibran\Mohamad Jibran.pdf" download class="cv-dl">↓ Download CV</a>
+        <div>
+          <p class="cv-sl">Languages</p>
+          <div class="cv-lang"><span class="cv-lang-n">Indonesian</span><span class="cv-lang-l">Native</span></div>
+          <div class="cv-lang"><span class="cv-lang-n">English</span><span class="cv-lang-l">Professional</span></div>
+        </div>
+        <div>
+          <p class="cv-sl">Strengths</p>
+          <div class="cv-bar-w"><div class="cv-bar-l"><span>Copywriting</span><span>95%</span></div><div class="cv-bar-t"><div class="cv-bar-f" style="width:95%"></div></div></div>
+          <div class="cv-bar-w"><div class="cv-bar-l"><span>PR Strategy</span><span>20%</span></div><div class="cv-bar-t"><div class="cv-bar-f" style="width:20%"></div></div></div>
+          <div class="cv-bar-w"><div class="cv-bar-l"><span>Brand Narrative</span><span>90%</span></div><div class="cv-bar-t"><div class="cv-bar-f" style="width:90%"></div></div></div>
+          <div class="cv-bar-w"><div class="cv-bar-l"><span>Social Media</span><span>85%</span></div><div class="cv-bar-t"><div class="cv-bar-f" style="width:85%"></div></div></div>
+        </div>
+      </div>
+      <div class="cv-right">
+        <p class="cv-st a1">Work Experience</p>
+        <div class="tl a2">
+          <div class="tl-i">
+            <div class="tl-yr">2023 — Now</div>
+            <div><div class="tl-r">Your Current Role</div><div class="tl-c">Company Name · Full-time</div><div class="tl-d">Describe what you do here — key responsibilities, achievements, and impact. Keep it specific and results-oriented.</div></div>
+          </div>
+          <div class="tl-i">
+            <div class="tl-yr">2021 — 2023</div>
+            <div><div class="tl-r">Previous Role</div><div class="tl-c">Company Name · Full-time</div><div class="tl-d">What brands, campaigns, and projects? Add real numbers where you can.</div></div>
+          </div>
+          <div class="tl-i">
+            <div class="tl-yr">2020 — 2021</div>
+            <div><div class="tl-r">Earlier Role</div><div class="tl-c">Company Name · Internship</div><div class="tl-d">Early experience that shaped your direction. What did you learn?</div></div>
+          </div>
+        </div>
+        <p class="cv-st a3">Education</p>
+        <div class="edu-g a3">
+          <div class="edu-c"><div class="edu-d">Your Degree</div><div class="edu-s">University Name</div><div class="edu-y">Year — Year</div></div>
+          <div class="edu-c"><div class="edu-d">Certificate / Course</div><div class="edu-s">Institution</div><div class="edu-y">Year</div></div>
+        </div>
+        <p class="cv-st a4">Modeling</p>
+        <div class="tl a4">
+          <div class="tl-i">
+            <div class="tl-yr">Active</div>
+            <div><div class="tl-r">Commercial &amp; Editorial Model</div><div class="tl-c">Independent · Jakarta</div><div class="tl-d">Product photography and editorial work for Indonesian fashion and lifestyle brands. Clients include Russ.Co, Steady&Slow, and others. Available for commercial bookings.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORK -->
+  <div class="pg" id="p3">
+    <div class="wk-wrap">
+      <div class="wk-top a1">
+        <h2 class="wk-h">Selected<br><em>Work.</em></h2>
+        <div class="wk-sub">PR · Copy · Strategy<br>2020 — Present</div>
+      </div>
+      <div class="wk-grid a2">
+        <div class="wc sp"><div class="wc-bg c1"><div class="wc-lines"></div></div><div class="wc-body"><span class="wc-tag">PR Campaign</span><h3 class="wc-title">Featured Project — PR &amp; Comms Campaign</h3><p class="wc-s">Media strategy · Press releases · Brand narrative</p></div><div class="wc-arr">↗</div></div>
+        <div class="wc"><div class="wc-bg c2"><div class="wc-lines"></div></div><div class="wc-body"><span class="wc-tag">Copywriting</span><h3 class="wc-title">Brand Voice Overhaul</h3><p class="wc-s">Tone of voice · Web copy · Taglines</p></div><div class="wc-arr">↗</div></div>
+        <div class="wc"><div class="wc-bg c3"><div class="wc-lines"></div></div><div class="wc-body"><span class="wc-tag">Content Strategy</span><h3 class="wc-title">Social Campaign — Local Brand</h3><p class="wc-s">Copy · Concept · Direction</p></div><div class="wc-arr">↗</div></div>
+        <div class="wc"><div class="wc-bg c4"><div class="wc-lines"></div></div><div class="wc-body"><span class="wc-tag">Media Relations</span><h3 class="wc-title">Press &amp; Coverage Drive</h3><p class="wc-s">Media outreach · Pitching · Placement</p></div><div class="wc-arr">↗</div></div>
+        <div class="wc"><div class="wc-bg c5"><div class="wc-lines"></div></div><div class="wc-body"><span class="wc-tag">Brand Strategy</span><h3 class="wc-title">Market Positioning Project</h3><p class="wc-s">Research · Messaging · Positioning</p></div><div class="wc-arr">↗</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLES -->
+  <div class="pg" id="p4">
+    <div class="ar-wrap">
+      <div class="ar-main">
+        <div class="ar-head a1">
+          <div class="sec-lbl">Writing</div>
+          <h2 class="ar-h">Ideas &amp;<br><em>Articles.</em></h2>
+          <p class="ar-sub-txt">Thoughts on PR, brand, culture, music, and the things worth writing about.</p>
+        </div>
+        <div class="arc a2">
+          <div class="arc-meta"><span class="arc-cat">Music</span><span class="arc-date">2026</span><span class="arc-src">Medium</span></div>
+          <h3 class="arc-title">Nocturnal Nostalgia: A 2026 Guide to Blood Orange's Coldest, Most Soulful Records</h3>
+          <p class="arc-ex">A deep dive into Blood Orange's discography — exploring how Dev Hynes constructs intimacy through sound, and why his records feel like private conversations in public spaces.</p>
+          <a href="https://medium.com/@djibran2002/nocturnal-nostalgia-a-2026-guide-to-blood-oranges-coldest-most-soulful-record-056d16b37b52" target="_blank" class="arc-rd">Read on Medium →</a>
+        </div>
+        <div class="arc a3">
+          <div class="arc-meta"><span class="arc-cat">Games</span><span class="arc-date">2026</span><span class="arc-src">Medium</span></div>
+          <h3 class="arc-title">Your Second Medium Article Title Goes Here</h3>
+          <p class="arc-ex">Add a short summary — 2 sentences is enough to hook a reader and give them a reason to click through to Medium.</p>
+          <a href="https://medium.com/@yourusername" target="_blank" class="arc-rd">Read on Medium →</a>
+        </div>
+        <div class="arc a4">
+          <div class="arc-meta"><span class="arc-cat">Personal · Culture & Society</span><span class="arc-date">Coming Soon</span></div>
+          <h3 class="arc-title">Next Article — Something You're Working On</h3>
+          <p class="arc-ex">Add a teaser here, or keep this as a placeholder for your next piece. Writing consistently signals credibility to anyone reading this portfolio.</p>
+          <a href="#" class="arc-rd">Coming Soon</a>
+        </div>
+      </div>
+      <div class="ar-side">
+        <div class="a2">
+          <p class="s-head">Topics</p>
+          <div class="t-cloud">
+            <a href="#" class="t-pill">Music</a>
+            <a href="#" class="t-pill">Film</a>
+            <a href="#" class="t-pill">Games</a>
+            <a href="#" class="t-pill">Culture & Society</a>
+            <a href="#" class="t-pill">Brand</a>
+            <a href="#" class="t-pill">Career</a>
+            <a href="#" class="t-pill">Personal </a>
+          </div>
+        </div>
+        <div class="a3">
+          <div class="nl-box">
+            <p class="nl-h">Stay curious.</p>
+            <p class="nl-s">New writing on PR, culture, and the things worth thinking about. No noise.</p>
+            <input type="email" class="nl-in" placeholder="your@email.com"/>
+            <button class="nl-btn">Subscribe</button>
+          </div>
+        </div>
+        <div class="a4">
+          <p class="s-head">Also On</p>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <a href="https://medium.com/@djibran2002" target="_blank" class="ab-link" style="font-size:12px;"><span>→</span> Medium Profile</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODEL -->
+  <div class="pg" id="p5">
+    <div class="mo-wrap">
+      <div class="mo-top">
+        <div>
+          <p class="mo-ey a1">Commercial &amp; Editorial</p>
+          <h2 class="mo-h a1">Through<br>The <em>Lens.</em></h2>
+        </div>
+        <p class="mo-desc a2">Commercial talent and editorial work for worldwide fashion and lifestyle brands.</p>
+      </div>
+      <div class="clients a2">
+        <div class="cl-item"><div class="cl-name">Frames</div><div class="cl-type">Pharmacist · Netherlands</div></div>
+        <div class="cl-item"><div class="cl-name">Russ.Co</div><div class="cl-type">Local Clothing · Indonesia</div></div>
+        <div class="cl-item"><div class="cl-name">Steady&Slow</div><div class="cl-type">Local Clothing · Indonesia</div></div>
+        <div class="cl-item"><div class="cl-name" style="font-size:12px;color:rgba(255,255,255,.22);font-style:normal;letter-spacing:.1em;text-transform:uppercase;">+ More</div><div class="cl-type">And More</div></div>
+      </div>
+      <div class="mo-grid a3">
+        <div class="mi"><div class="mi-img"><!-- <img src="model-1.jpg" alt="Editorial"> --><div class="mi-ph">◉</div><div class="mi-ph-t">Portrait · Editorial</div></div><div class="mi-ov"><div class="mi-t">Editorial</div><div class="mi-l">Portrait · Fashion</div></div></div>
+        <div class="mi"><div class="mi-img"><!-- <img src="model-2.jpg" alt="Russ.Co"> --><div class="mi-ph">◉</div><div class="mi-ph-t">Russ.Co</div></div><div class="mi-ov"><div class="mi-t">Russ.Co.Id</div><div class="mi-l">Product · Campaign</div></div></div>
+        <div class="mi"><div class="mi-img"><!-- <img src="model-3.jpg" alt="Steady&Slow"> --><div class="mi-ph">◉</div><div class="mi-ph-t">Steady&Slow</div></div><div class="mi-ov"><div class="mi-t">SteadynSlow</div><div class="mi-l">Lookbook · Lifestyle</div></div></div>
+        <div class="mi"><div class="mi-img"><!-- <img src="model-4.jpg" alt="Campaign"> --><div class="mi-ph">◉</div><div class="mi-ph-t">Campaign Spread</div></div><div class="mi-ov"><div class="mi-t">Campaign Spread</div><div class="mi-l">Commercial · Print</div></div></div>
+        <div class="mi"><div class="mi-img"><!-- <img src="model-5.jpg" alt="Lifestyle"> --><div class="mi-ph">◉</div><div class="mi-ph-t">Lifestyle</div></div><div class="mi-ov"><div class="mi-t">Lifestyle</div><div class="mi-l">Street · Urban</div></div></div>
+      </div>
+      <div class="mo-cta a4">
+        <a href="mailto:djibran2002@gmail.com" class="btn-gl">Book a Shoot</a>
+        <span class="mo-note">Available for commercial bookings · Jakarta &amp; beyond</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- BOTTOM BAR -->
+<div id="bbar">
+  <div class="bbar-loc"><div class="bbar-dot"></div>Jakarta, Indonesia</div>
+  <div class="bbar-links">
+    <a href="mailto:djibran2002@gmail.com" class="bbar-link">Email</a>
+    <a href="https://linkedin.com" target="_blank" class="bbar-link">LinkedIn</a>
+    <a href="https://instagram.com" target="_blank" class="bbar-link">Instagram</a>
+    <a href="https://medium.com" target="_blank" class="bbar-link">Medium</a>
+  </div>
+</div>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur'),cr=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function tick(){cur.style.left=mx+'px';cur.style.top=my+'px';rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(tick);})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='5px';cur.style.height='5px';cur.style.background='var(--gold)';cr.style.width='42px';cr.style.height='42px';cr.style.opacity='.12';});
+  el.addEventListener('mouseleave',()=>{cur.style.width='8px';cur.style.height='8px';cur.style.background='var(--ink)';cr.style.width='32px';cr.style.height='32px';cr.style.opacity='.25';});
+});
+
+// PAGE SWITCHER
+const pages=document.querySelectorAll('.pg');
+const btns=document.querySelectorAll('.nav-items button');
+const pip=document.getElementById('navPip');
+const bbar=document.getElementById('bbar');
+let cur_pg=0;
+
+function goTo(i){
+  if(i===cur_pg)return;
+  const prev=pages[cur_pg];
+  prev.classList.remove('on');prev.classList.add('out');
+  setTimeout(()=>prev.classList.remove('out'),600);
+  pages[i].classList.add('on');
+  pages[i].scrollTop=0;
+  cur_pg=i;
+  btns.forEach((b,j)=>b.classList.toggle('on',j===i));
+  // dark sections
+  const dark=i===5;
+  pip.style.background=dark?'var(--gold)':'';
+  pip.style.borderColor=dark?'var(--gold)':'';
+  bbar.style.background=dark?'var(--dark)':'var(--cream)';
+  bbar.style.borderColor=dark?'rgba(255,255,255,.08)':'var(--rule)';
+  bbar.querySelectorAll('.bbar-link,.bbar-loc').forEach(el=>el.style.color=dark?'rgba(255,255,255,.25)':'');
+}
+
+// KEYBOARD
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowDown'||e.key==='ArrowRight')goTo(Math.min(cur_pg+1,pages.length-1));
+  if(e.key==='ArrowUp'||e.key==='ArrowLeft')goTo(Math.max(cur_pg-1,0));
+});
+</script>
+</body>
+</html>
